@@ -1,0 +1,20 @@
+.scroll-container {
+    width: 100%;
+    height: screen;
+    overflow: hidden;
+    position: relative;
+}
+
+.text-container {
+    position: absolute;
+    white-space: nowrap;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
