@@ -17,25 +17,12 @@ interface ISong {
     sections: ISections[];
 }
 
-interface IErrorForm {
-    title: string;
-    author: string;
-    genre: string;
-    sections: string;
-}
-
 const CreateSong: React.FC = () => {
     const [form, setForm] = useState<ISong>({
         title: "",
         author: "",
         genre: "",
         sections: [],
-    });
-    const [errorForm, setErrorForm] = useState<IErrorForm>({
-        title: "",
-        author: "",
-        genre: "",
-        sections: "",
     });
 
     const [estr, setEstr] = useState<boolean>(false);
@@ -64,13 +51,13 @@ const CreateSong: React.FC = () => {
         setSection({ ...section, type });
     };
 
-    const handleVerses = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const index: number = parseInt(event.target.name) - 1;
-        const value: string = event.target.value;
-        const newVerses = [...verses];
-        newVerses[index] = value;
-        setVerses(newVerses);
-    };
+    // const handleVerses = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const index: number = parseInt(event.target.name) - 1;
+    //     const value: string = event.target.value;
+    //     const newVerses = [...verses];
+    //     newVerses[index] = value;
+    //     setVerses(newVerses);
+    // };
 
     const handlePasteVerses = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const pastedText = event.target.value;

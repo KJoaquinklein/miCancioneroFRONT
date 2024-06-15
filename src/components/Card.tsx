@@ -38,16 +38,11 @@ const Card: React.FC<{ song: ISong }> = ({ song }) => {
                 return;
             } else {
                 // navigate("/");
-                axios
-                    .post(`https://micancioneroback-production.up.railway.app/user/delete/${song.id}`)
-                    .then(({ data }) => {
-                        // location.reload()
-                        axios
-                            .get("https://micancioneroback-production.up.railway.app/user/allsongs")
-                            .then(({ data }) => {
-                                dispatch(getSongs(data));
-                            });
+                axios.post(`https://micancioneroback-production.up.railway.app/user/delete/${song.id}`).then(() => {
+                    axios.get("https://micancioneroback-production.up.railway.app/user/allsongs").then(({ data }) => {
+                        dispatch(getSongs(data));
                     });
+                });
             }
         });
     };
