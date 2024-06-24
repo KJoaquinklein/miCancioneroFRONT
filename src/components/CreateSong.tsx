@@ -170,7 +170,7 @@ const CreateSong: React.FC = () => {
                     Completa las casillas para añadir una nueva canción a tu cancionero
                 </p>
                 <button
-                    className="mv:hidden sm:absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
+                    className="mv:hidden sm:flex absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
                     onClick={handleBack}
                 >
                     <IoMdArrowRoundBack className={"text-4xl"} />

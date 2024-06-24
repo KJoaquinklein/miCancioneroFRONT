@@ -176,15 +176,15 @@ const Song: React.FC = () => {
             <button
                 className={
                     scroll
-                        ? "absolute mv:bottom-5 sm:top-5 right-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
-                        : "absolute mv:bottom-5 sm:top-5  right-10 p-5 bg-[#84a59d] rounded-full flex justify-center items-center"
+                        ? "absolute mv:bottom-5 sm:bottom-auto sm:top-5 right-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
+                        : "absolute mv:bottom-5 sm:bottom-auto sm:top-5 right-10 p-5 bg-[#84a59d] rounded-full flex justify-center items-center"
                 }
                 onClick={scroll ? handleStopScroll : handleScroll}
             >
                 {scroll ? <FaPause className={"text-4xl"} /> : <FaPlay className={"text-4xl"} />}
             </button>
             <button
-                className="mv:hidden sm:absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
+                className="mv:hidden sm:flex absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
                 onClick={handleBack}
             >
                 <IoMdArrowRoundBack className={"text-4xl"} />
@@ -196,7 +196,7 @@ const Song: React.FC = () => {
             >
                 <FaPlay className=" text-5xl" />
             </button> */}
-            <div className="w-full mv:h-[665px] sm:h-[600px] mv:w-screen sm:w-[670px] pt-10 mv:overflow-hidden sm:overflow-auto relative flex justify-center">
+            <div className="w-full mv:h-[665px] sm:h-[600px] w-screen pt-10 mv:overflow-hidden sm:overflow-auto relative flex justify-center">
                 <div className="absolute whitespace-nowrap mt-10" ref={textContainerRef}>
                     {song.sections &&
                         song.sections.map((sec: ISections) => (
