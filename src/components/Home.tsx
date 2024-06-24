@@ -155,10 +155,10 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="bg-dibujo max-w-screen min-h-screen flex justify-center">
+        <div className="bg-dibujo max-w-screen max-h-screen flex justify-center mv:overflow-hidden sm:overflow-auto">
             {/* <div className="bg-[#f4a261] max-w-screen min-h-screen flex justify-center"> */}
             {/* <div className="bg-[#2a9d8f] max-w-screen min-h-screen flex justify-center"> */}
-            <div className="bg-gray-100 min-w-[900px] min-h-screen flex justify-center items-center">
+            <div className="bg-gray-100 mv:min-w-screen sm:min-w-screen md:w-[768px] lg:min-w-[900px] max-h-screen flex justify-center items-center">
                 <div className="w-full h-screen  flex flex-col items-center">
                     <h1 className="font-Outfit text-5xl text-center mt-[42px] underline  decoration-[#e76f51]">
                         Mi Cancionero
@@ -166,10 +166,10 @@ const Home: React.FC = () => {
                     {/* <h1 className="font-Outfit text-4xl text-center mt-9 bg-gray-100 border-[3px] border-black px-3 py-1 rounded-full">
                         Mi Cancionero
                     </h1> */}
-                    <div className="flex space-x-8 mt-5">
+                    <div className="flex mv:space-x-1 sm:space-x-4 md:space-x-8 mt-5 mv:scale-90 sm:scale-100">
                         {showFilters ? (
                             <div className="bg-gray-100 flex items-center text-2xl border-[3px] border-black px-3 py-1 rounded-full min-w-36 hover:text-[#2a9d8f] hover:border-[#2a9d8f] duration-100 cursor-pointer">
-                                <p onClick={handleshowFilter} className="cursor-pointer">
+                                <p onClick={handleshowFilter} className="cursor-pointer mv:hidden sm:flex">
                                     🔃
                                 </p>
                                 <select
@@ -215,7 +215,7 @@ const Home: React.FC = () => {
                         {showSearch ? (
                             <div className="bg-gray-100 flex items-center text-2xl border-[3px] border-black px-3 py-1 rounded-full min-w-36 hover:text-[#2a9d8f] hover:border-[#2a9d8f] duration-100 cursor-pointer">
                                 {/* <IoSearch className="mr-2 text-[#335c67]" /> */}
-                                <p onClick={handleShowSearch} className="cursor-pointer">
+                                <p onClick={handleShowSearch} className="cursor-pointer mv:hidden sm:flex">
                                     🔍
                                 </p>
                                 <input
@@ -255,7 +255,7 @@ const Home: React.FC = () => {
                         </Link>
                     </div>
                     <div className="bg-black w-4/5 h-[3px] mt-3"></div>
-                    <div className="pt-4 flex flex-col space-y-4 overflow-auto h-[565px] w-[700px] items-center">
+                    <div className="pt-4 flex flex-col space-y-4 overflow-auto mv:h-[665px] sm:h-[565px] mv:w-[390px] sm:w-[670px] md:w-[700px] items-center">
                         {songs.length ? (
                             songs.map((song) => <Card key={song.id} song={song} />)
                         ) : (

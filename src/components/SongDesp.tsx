@@ -23,13 +23,21 @@ const Song: React.FC = () => {
 
     const [song, setSong] = useState<ISong>({ id: 0, title: "", author: "", genre: "", sections: [] });
     const [scroll, setScroll] = useState(false);
-    const [scrollVel, setScrollVel] = useState(180);
+    const localStorageScroll = localStorage.getItem("velocity");
+    console.log(localStorageScroll);
+
+    const [scrollVel, setScrollVel] = useState(localStorageScroll ? Number(localStorageScroll) : 150);
+    // let scrollVel: number = localStorageScroll ? Number(localStorageScroll) : 150;
 
     const { id } = useParams();
     useEffect(() => {
         axios.get(`https://micancioneroback-production.up.railway.app/user/song/${id}`).then(({ data }) => {
             setSong({ ...data });
         });
+
+        // return () => {
+        //     localStorage.setItem("velocity", scrollVel.toString());
+        // };
     }, []);
 
     const textContainerRef = useRef<HTMLDivElement>(null);
@@ -73,7 +81,15 @@ const Song: React.FC = () => {
 
     const handleChangeVel = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value: number = Number(event.target.value);
+        // scrollVel = value;
         setScrollVel(value);
+        localStorage.setItem("velocity", value.toString());
+    };
+
+    const handleChangeButton = (event) => {
+        // scrollVel = Number(event.target.name);
+        setScrollVel(Number(event.target.name));
+        localStorage.setItem("velocity", Number(event.target.name).toString());
     };
 
     const navigate = useNavigate();
@@ -88,9 +104,71 @@ const Song: React.FC = () => {
                 <p className="text-xl">
                     {song.author} | {song.genre}
                 </p>
-                <div>
-                    <label htmlFor="vel">Velocidad:</label>
-                    <input type="number" name="vel" onChange={handleChangeVel} className="w-14 ml-3" />
+                <div className="flex space-x-3">
+                    <button
+                        name="100"
+                        className={
+                            scrollVel === 100
+                                ? "border-[3px] border-[#e76f51] px-3 rounded-full hover:border-[#e76f51] duration-200"
+                                : "border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200"
+                        }
+                        onClick={handleChangeButton}
+                    >
+                        100
+                    </button>
+                    <button
+                        name="120"
+                        className={
+                            scrollVel === 120
+                                ? "border-[3px] border-[#e76f51] px-3 rounded-full hover:border-[#e76f51] duration-200"
+                                : "border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200"
+                        }
+                        onClick={handleChangeButton}
+                    >
+                        120
+                    </button>
+                    <button
+                        name="140"
+                        className={
+                            scrollVel === 140
+                                ? "border-[3px] border-[#e76f51] px-3 rounded-full hover:border-[#e76f51] duration-200"
+                                : "border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200"
+                        }
+                        onClick={handleChangeButton}
+                    >
+                        140
+                    </button>
+                    <button
+                        name="160"
+                        className={
+                            scrollVel === 160
+                                ? "border-[3px] border-[#e76f51] px-3 rounded-full hover:border-[#e76f51] duration-200"
+                                : "border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200"
+                        }
+                        onClick={handleChangeButton}
+                    >
+                        160
+                    </button>
+                    <button
+                        name="180"
+                        className={
+                            scrollVel === 180
+                                ? "border-[3px] border-[#e76f51] px-3 rounded-full hover:border-[#e76f51] duration-200"
+                                : "border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200"
+                        }
+                        onClick={handleChangeButton}
+                    >
+                        180
+                    </button>
+                    <label htmlFor="vel" className="mv:hidden sm:flex">
+                        Otra:
+                    </label>
+                    <input
+                        type="text"
+                        name="vel"
+                        onChange={handleChangeVel}
+                        className="w-14 border-[3px] border-black px-3 rounded-full hover:border-[#e76f51] duration-200 appearance-none"
+                    />
                 </div>
             </div>
             <div className="bg-black w-4/5 h-[3px] mt-5"></div>
@@ -98,15 +176,15 @@ const Song: React.FC = () => {
             <button
                 className={
                     scroll
-                        ? "absolute top-5 right-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
-                        : "absolute top-5 right-10 p-5 bg-[#84a59d] rounded-full flex justify-center items-center"
+                        ? "absolute mv:bottom-5 sm:top-5 right-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
+                        : "absolute mv:bottom-5 sm:top-5  right-10 p-5 bg-[#84a59d] rounded-full flex justify-center items-center"
                 }
                 onClick={scroll ? handleStopScroll : handleScroll}
             >
                 {scroll ? <FaPause className={"text-4xl"} /> : <FaPlay className={"text-4xl"} />}
             </button>
             <button
-                className="absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
+                className="mv:hidden sm:absolute top-5 left-10 p-5 bg-[#e76f51] rounded-full flex justify-center items-center"
                 onClick={handleBack}
             >
                 <IoMdArrowRoundBack className={"text-4xl"} />
@@ -118,20 +196,26 @@ const Song: React.FC = () => {
             >
                 <FaPlay className=" text-5xl" />
             </button> */}
-            <div className="w-full h-[600px] pt-10 overflow-auto relative flex justify-center">
+            <div className="w-full mv:h-[665px] sm:h-[600px] mv:w-screen sm:w-[670px] pt-10 mv:overflow-hidden sm:overflow-auto relative flex justify-center">
                 <div className="absolute whitespace-nowrap mt-10" ref={textContainerRef}>
                     {song.sections &&
                         song.sections.map((sec: ISections) => (
                             <div
                                 className={
                                     sec.type === "Estribillo"
-                                        ? "my-10 text-[#9e2a2b] text-5xl text-center"
-                                        : "my-10 text-5xl text-center"
+                                        ? "my-10 text-[#9e2a2b] mv:text-xl md:text-5xl text-center"
+                                        : "my-10 mv:text-xl md:text-5xl text-center"
                                 }
                             >
-                                {sec.verses.map((ver: string) => (
-                                    <p>{ver}</p>
-                                ))}
+                                {sec.verses.map((ver: string, i) =>
+                                    ver ? (
+                                        <p key={i}>{ver}</p>
+                                    ) : (
+                                        <p className="mt-14" key={i}>
+                                            {ver}
+                                        </p>
+                                    )
+                                )}
                             </div>
                         ))}
                 </div>

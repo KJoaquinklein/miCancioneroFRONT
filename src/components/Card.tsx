@@ -48,9 +48,9 @@ const Card: React.FC<{ song: ISong }> = ({ song }) => {
     };
 
     return (
-        <div className="text-black flex justify-between items-center border-[3px] border-[#264653] px-8 py-1 rounded-full w-[600px] h-20 hover:border-[#e76f51] hover:scale-105 hover:text-[#e76f51] duration-200">
+        <div className="text-black flex justify-between items-center border-[3px] border-[#264653] px-8 py-1 rounded-full mv:w-[390px] md:w-[600px] h-20 hover:border-[#e76f51] hover:scale-105 hover:text-[#e76f51] duration-200">
             <Link to={`/song/${song.id}`} className="flex flex-col cursor-pointer">
-                <h2 className="text-3xl text-[#e76f51]">{song.title}</h2>
+                <h2 className="text-3xl text-[#e76f51] truncate mv:w-[300px]">{song.title}</h2>
                 <div className="flex text-xl">
                     <p>
                         {song.author} | {song.genre}

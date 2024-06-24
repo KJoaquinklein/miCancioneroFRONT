@@ -17,6 +17,14 @@ export default {
                     0: "#ffe8d6",
                 },
             },
+            screens: {
+                mv: "100px",
+                sm: "670px",
+                md: "768px",
+                lg: "1024px",
+                xl: "1280px",
+                "2xl": "1536px",
+            },
             keyframes: {
                 scrollText: {
                     "0%": { transform: "translateY(100%)" },
