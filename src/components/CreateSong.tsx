@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -25,17 +25,17 @@ const CreateSong: React.FC = () => {
         sections: [],
     });
 
-    const [estr, setEstr] = useState<boolean>(false);
+    // const [estr, setEstr] = useState<boolean>(false);
 
-    useEffect(() => {
-        let cont = 0;
-        form.sections.forEach((sec) => {
-            if (sec.type === "Estribillo") {
-                cont++;
-            }
-        });
-        setEstr(cont > 0);
-    }, [form]);
+    // useEffect(() => {
+    //     let cont = 0;
+    //     form.sections.forEach((sec) => {
+    //         if (sec.type === "Estribillo") {
+    //             cont++;
+    //         }
+    //     });
+    //     setEstr(cont > 0);
+    // }, [form]);
 
     const [section, setSection] = useState<ISections>({ type: "", verses: [] });
     const [verses, setVerses] = useState<string>("");
@@ -89,16 +89,16 @@ const CreateSong: React.FC = () => {
         setForm({ ...form, sections: [] });
     };
 
-    const handleEstrib = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        let estribillo: ISections = { type: "", verses: [] };
-        form.sections.forEach((sec) => {
-            if (sec.type === "Estribillo") {
-                estribillo = sec;
-            }
-        });
-        setForm({ ...form, sections: [...form.sections, estribillo] });
-    };
+    // const handleEstrib = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     event.preventDefault();
+    //     let estribillo: ISections = { type: "", verses: [] };
+    //     form.sections.forEach((sec) => {
+    //         if (sec.type === "Estribillo") {
+    //             estribillo = sec;
+    //         }
+    //     });
+    //     setForm({ ...form, sections: [...form.sections, estribillo] });
+    // };
 
     const navigate = useNavigate();
 

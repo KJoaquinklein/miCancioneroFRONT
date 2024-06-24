@@ -86,7 +86,7 @@ const Song: React.FC = () => {
         localStorage.setItem("velocity", value.toString());
     };
 
-    const handleChangeButton = (event) => {
+    const handleChangeButton = (event: any) => {
         // scrollVel = Number(event.target.name);
         setScrollVel(Number(event.target.name));
         localStorage.setItem("velocity", Number(event.target.name).toString());
