@@ -32,7 +32,7 @@ const Song: React.FC = () => {
     const { id } = useParams();
     useEffect(() => {
         axios.get(`https://micancioneroback-production.up.railway.app/user/song/${id}`).then(({ data }) => {
-            setSong({ ...data });
+            setSong(data[0]);
         });
 
         // return () => {
